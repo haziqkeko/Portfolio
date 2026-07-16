@@ -1,115 +1,140 @@
+/* 1. DESIGN CONSTANTS */
+:root {
+    --bg-main: #060911;         
+    --bg-card: #0d1527;         
+    --text-primary: #e2e8f0;    
+    --text-secondary: #566885;  
+    --accent-glow: #818cf8;     
+    --accent-success: #34d399;  
+    --accent-warning: #f59e0b;  
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'JetBrains Mono', monospace;
+    min-height: 100vh;
 }
 
 body {
-    background-color: #f8f9fa;
-    color: #333;
-    line-height: 1.6;
-}
-
-header {
-    background: #ffffff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-nav {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 1.5rem;
+    justify-content: flex-start; /* Forces content up to the top area */
+    padding-top: 14vh;          /* Clean, uniform breathing room from window ceiling */
+    position: relative;
+    overflow-x: hidden;
 }
 
-nav ul {
+/* BACKGROUND ACCELERATION MATRIX */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;                /* Safely locks background beneath text content */
+    pointer-events: none;      
+}
+
+/* HERO BOX CORE ALIGNMENT */
+.hero-container {
+    position: relative;
+    z-index: 10;               /* Ensures user interactions bypass the background layer */
+    text-align: center;
+    max-width: 540px;
     display: flex;
-    list-style: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.4rem;
 }
 
-nav ul li {
-    margin-left: 2rem;
+/* METRIC STATUS INDICATORS */
+.badge-row {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 0.25rem;
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: #555;
+@keyframes statusPulse {
+    0% { transform: scale(0.9); opacity: 0.5; }
+    50% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.5; }
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;        /* Clean, squared engineering feel */
+    font-size: 0.68rem;
     font-weight: 500;
 }
 
-.hero {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 6rem 1.5rem;
-    text-align: center;
+.status-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    animation: statusPulse 1.8s infinite ease-in-out;
 }
 
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #111;
+.status-success {
+    background: rgba(52, 211, 153, 0.05);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    color: var(--accent-success);
+}
+.status-success .status-dot { background-color: var(--accent-success); }
+
+.status-warning {
+    background: rgba(245, 158, 11, 0.05);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    color: var(--accent-warning);
+}
+.status-warning .status-dot { background-color: var(--accent-warning); }
+
+/* HARDWARE BLOCK PROFILE FRAME */
+.profile-frame {
+    width: 110px;
+    height: 110px;
+    border-radius: 6px;        /* Matches structural grid box system */
+    border: 1px solid rgba(129, 140, 248, 0.3);
+    overflow: hidden;
+    background: var(--bg-card);
 }
 
-#projects, #contact {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 4rem 1.5rem;
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    text-align: center;
+/* COMPACT TYPOGRAPHY SYSTEM */
+.hero-text h1 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
 }
 
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1-fraction));
-    gap: 2rem;
+.current-occupation {
+    color: var(--accent-glow);
+    font-size: 0.8rem;
+    margin-top: 0.15rem;
+    margin-bottom: 0.8rem;
 }
 
-.project-card {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    border: 1px solid #eee;
-}
-
-.project-card h3 {
-    margin-bottom: 1rem;
-}
-
-.tech-tag {
-    display: inline-block;
-    background: #e9ecef;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    margin-top: 1rem;
-    font-weight: 500;
-}
-
-.btn {
-    display: inline-block;
-    background: #007bff;
-    color: #fff;
-    padding: 0.8rem 2rem;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 1rem;
-}
-
-footer {
-    text-align: center;
-    padding: 2rem;
-    background: #333;
-    color: #fff;
-    margin-top: 4rem;
+.hero-lead {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
 }

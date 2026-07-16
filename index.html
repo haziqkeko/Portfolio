@@ -3,52 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Portfolio Keko</title>
+    <title>Developer Hub</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">My Portfolio</div>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section id="about" class="hero">
-        <h1>Hi, I'm a Developer and Analyst</h1>
-        <p>Welcome to my space. I specialize in building data driven solutions, writing clean code, and turning complex problems into structured projects.</p>
-    </section>
+    <canvas id="bg-canvas"></canvas>
 
-    <section id="projects">
-        <h2>Featured Projects</h2>
-        <div class="project-grid">
-            <!-- Project 1 -->
-            <div class="project-card">
-                <h3>Project Title One</h3>
-                <p>A brief description of the technical tools used, the problem solved, and the final results achieved.</p>
-                <span class="tech-tag">Python</span>
+    <main class="hero-container">
+        
+        <div class="badge-row">
+            <div class="status-badge status-warning">
+                <span class="status-dot"></span>
+                Degree Studies Active
             </div>
-            <!-- Project 2 -->
-            <div class="project-card">
-                <h3>Project Title Two</h3>
-                <p>A breakdown of another project, focusing on engineering efficiency and implementation details.</p>
-                <span class="tech-tag">C / Systems</span>
+            <div class="status-badge status-success">
+                <span class="status-dot"></span>
+                Available for Internships
             </div>
         </div>
-    </section>
 
-    <section id="contact">
-        <h2>Get In Touch</h2>
-        <p>I am always open to discussing technical projects or data analysis collaborations.</p>
-        <a href="mailto:your-email@example.com" class="btn">Email Me</a>
-    </section>
+        <div class="profile-frame">
+            <img src="assets/me.png" alt="Profile avatar" class="profile-img" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=haziq'">
+        </div>
 
-    <footer>
-        <p>&copy; 2026 Built from scratch.</p>
-    </footer>
+        <div class="hero-text">
+            <h1>Hi! My name is Haziq.</h1>
+            <p class="current-occupation">[ Data Analytic Student ]</p>
+            <p class="hero-lead">
+                Specializing in localized pipeline configurations, interactive script architecture, and structural narrative network models.
+            </p>
+        </div>
+
+    </main>
+
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let clusters = [];
+        let scrollSpeedMultiplier = 1;
+        let lastScrollTop = 0;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initGraph();
+        }
+        window.addEventListener('resize', resizeCanvas);
+
+        class Node {
+            constructor(x, y, radius, isHub, parent = null) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.isHub = isHub;
+                this.parent = parent;
+                
+                // Fine-tuned slow drift constants
+                this.vx = (Math.random() - 0.5) * 0.25;
+                this.vy = (Math.random() - 0.5) * 0.25;
+                
+                this.angle = Math.random() * Math.PI * 2;
+                this.orbitSpeed = (Math.random() - 0.5) * 0.006;
+                this.orbitRadius = parent ? Math.sqrt(Math.pow(this.x - parent.x, 2) + Math.pow(this.y - parent.y, 2)) : 0;
+            }
+
+            update() {
+                if (this.isHub) {
+                    this.x += this.vx * scrollSpeedMultiplier;
+                    this.y += this.vy * scrollSpeedMultiplier;
+
+                    if (this.x < 100 || this.x > canvas.width - 100) this.vx *= -1;
+                    if (this.y < 100 || this.y > canvas.height - 100) this.vy *= -1;
+                } else {
+                    this.angle += this.orbitSpeed * scrollSpeedMultiplier;
+                    this.x = this.parent.x + Math.cos(this.angle) * this.orbitRadius;
+                    this.y = this.parent.y + Math.sin(this.angle) * this.orbitRadius;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.isHub ? 'rgba(129, 140, 248, 0.9)' : 'rgba(99, 102, 241, 0.55)';
+                ctx.fill();
+                
+                // Extended outmost hub framework ring
+                if (this.isHub) {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius + 10, 0, Math.PI * 2);
+                    ctx.strokeStyle = 'rgba(129, 140, 248, 0.12)';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        function initGraph() {
+            clusters = [];
+            const hubCount = 5;             // Increased hub density across wide screens
+            const satellitesPerHub = 13;    // Boosted satellite count for high complexity structural visualization
+
+            for (let i = 0; i < hubCount; i++) {
+                let rx = 150 + Math.random() * (canvas.width - 300);
+                let ry = 150 + Math.random() * (canvas.height - 300);
+                
+                // Central Hub: Radius scaled up to 9px
+                let hub = new Node(rx, ry, 9, true);
+                clusters.push(hub);
+
+                for (let j = 0; j < satellitesPerHub; j++) {
+                    // Extended vector reach parameters (longer structural line lengths)
+                    let distance = 60 + Math.random() * 90;
+                    let angle = (j / satellitesPerHub) * Math.PI * 2;
+                    let cx = hub.x + Math.cos(angle) * distance;
+                    let cy = hub.y + Math.sin(angle) * distance;
+                    
+                    // Satellite Nodes: Radius scaled up to 4px
+                    clusters.push(new Node(cx, cy, 4, false, hub));
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            if (scrollSpeedMultiplier > 1) {
+                scrollSpeedMultiplier -= 0.06;
+            } else {
+                scrollSpeedMultiplier = 1;
+            }
+
+            // Draw structural mesh data links
+            clusters.forEach(node => {
+                if (!node.isHub && node.parent) {
+                    ctx.beginPath();
+                    ctx.moveTo(node.x, node.y);
+                    ctx.lineTo(node.parent.x, node.parent.y);
+                    ctx.strokeStyle = 'rgba(99, 102, 241, 0.15)';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            });
+
+            clusters.forEach(node => {
+                node.update();
+                node.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('scroll', () => {
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+            const delta = Math.abs(st - lastScrollTop);
+            scrollSpeedMultiplier = Math.min(8, 1 + delta * 0.25);
+            lastScrollTop = st <= 0 ? 0 : st;
+        }, { passive: true });
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initGraph();
+        animate();
+    </script>
 </body>
 </html>
