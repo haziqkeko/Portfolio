@@ -1,4 +1,6 @@
-/* 1. DESIGN CONSTANTS */
+/* =========================================================================
+   1. STRUCTURAL PALETTE PRESETS & RESET
+   ========================================================================= */
 :root {
     --bg-main: #060911;         
     --bg-card: #0d1527;         
@@ -15,47 +17,67 @@
     box-sizing: border-box;
 }
 
+/* PREVENT DUAL VIEWPORT BINDING ERROR STATUS */
 html, body {
     background-color: var(--bg-main);
     color: var(--text-primary);
     font-family: 'JetBrains Mono', monospace;
-    min-height: 100vh;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; /* Drops standard browser frames */
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Forces content up to the top area */
-    padding-top: 14vh;          /* Clean, uniform breathing room from window ceiling */
+/* =========================================================================
+   2. INTERACTIVE INTERACTION INTERFACE STAGING
+   ========================================================================= */
+
+/* UPDATED KINETIC SCROLL WRAPPER */
+.scroll-wrapper {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; /* Prevents default browser scrollbars and sluggish snap-lag */
     position: relative;
-    overflow-x: hidden;
+    z-index: 10;
 }
 
-/* BACKGROUND ACCELERATION MATRIX */
+/* GLOBAL GRAPH CANVAS FRAME POSITIONING */
 #bg-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 0;                /* Safely locks background beneath text content */
+    z-index: 0;                
     pointer-events: none;      
 }
 
-/* HERO BOX CORE ALIGNMENT */
-.hero-container {
-    position: relative;
-    z-index: 10;               /* Ensures user interactions bypass the background layer */
-    text-align: center;
-    max-width: 540px;
+/* SHARED KINETIC ENGINE TRANSITION RULES */
+.hero-container, .about-container {
+    width: 100%;
+    height: 100vh;
+    position: absolute; /* Stack sections perfectly for JS transition management */
+    top: 0;
+    left: 0;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1); /* Premium high-end easing sweep */
+    will-change: transform;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    padding: 2rem;
+}
+
+/* =========================================================================
+   3. SECTION 1: HERO VIEWPORT CORE LAYOUT
+   ========================================================================= */
+.hero-container {
+    transform: translateY(0%); /* Rest baseline coordinates */
+    max-width: 540px;
+    margin: 0 auto;
     gap: 1.4rem;
 }
 
-/* METRIC STATUS INDICATORS */
+/* STATUS BADGE MATRICES */
 .badge-row {
     display: flex;
     gap: 0.6rem;
@@ -75,7 +97,7 @@ body {
     align-items: center;
     gap: 0.45rem;
     padding: 0.3rem 0.75rem;
-    border-radius: 3px;        /* Clean, squared engineering feel */
+    border-radius: 3px;        
     font-size: 0.68rem;
     font-weight: 500;
 }
@@ -101,11 +123,10 @@ body {
 }
 .status-warning .status-dot { background-color: var(--accent-warning); }
 
-/* HARDWARE BLOCK PROFILE FRAME */
 .profile-frame {
     width: 110px;
     height: 110px;
-    border-radius: 6px;        /* Matches structural grid box system */
+    border-radius: 6px;        
     border: 1px solid rgba(129, 140, 248, 0.3);
     overflow: hidden;
     background: var(--bg-card);
@@ -117,7 +138,10 @@ body {
     object-fit: cover;
 }
 
-/* COMPACT TYPOGRAPHY SYSTEM */
+.hero-text {
+    text-align: center;
+}
+
 .hero-text h1 {
     font-size: 1.45rem;
     font-weight: 700;
@@ -137,4 +161,88 @@ body {
     font-size: 0.78rem;
     line-height: 1.65;
     letter-spacing: -0.01em;
+}
+
+/* =========================================================================
+   4. SECTION 2: ABOUT VIEWPORT CORE LAYOUT
+   ========================================================================= */
+.about-container {
+    transform: translateY(100%); /* Staged completely off-screen below hero */
+}
+
+.about-content-box {
+    text-align: left;
+    max-width: 540px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.section-bracket {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* MAIN ABOUT INTERNAL CONTENT SYSTEM GRID */
+.about-main-layout {
+    border-left: 1px dashed rgba(86, 104, 133, 0.3);
+    padding-left: 1.5rem;
+    margin-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.bio-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.bio-paragraph {
+    color: var(--text-primary);
+    font-size: 0.78rem;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+}
+
+.comment-text {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* METRICS COMPACT DISPLAY CARDS */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.metric-card {
+    background: rgba(13, 21, 39, 0.4);
+    border: 1px solid rgba(86, 104, 133, 0.15);
+    padding: 0.8rem;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.metric-number {
+    color: var(--accent-glow);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.metric-label {
+    color: var(--text-secondary);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
 }

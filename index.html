@@ -9,164 +9,78 @@
 </head>
 <body>
 
+    <!-- GPU-ACCELERATED BACKGROUND CANVAS LAYER -->
     <canvas id="bg-canvas"></canvas>
 
-    <main class="hero-container">
-        
-        <div class="badge-row">
-            <div class="status-badge status-warning">
-                <span class="status-dot"></span>
-                Degree Studies Active
+    <!-- MANDATORY SCROLL SNAP CONTAINER GRID -->
+    <div class="scroll-wrapper" id="main-scroller">
+
+        <!-- SECTION 1: HERO VIEWPORT -->
+        <main class="hero-container">
+            <div class="badge-row">
+                <div class="status-badge status-warning">
+                    <span class="status-dot"></span>
+                    Degree Studies Active
+                </div>
+                <div class="status-badge status-success">
+                    <span class="status-dot"></span>
+                    Available for Internships
+                </div>
             </div>
-            <div class="status-badge status-success">
-                <span class="status-dot"></span>
-                Available for Internships
+
+            <div class="profile-frame">
+                <img src="assets/me.png" alt="Profile avatar" class="profile-img" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=haziq'">
             </div>
-        </div>
 
-        <div class="profile-frame">
-            <img src="assets/me.png" alt="Profile avatar" class="profile-img" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=haziq'">
-        </div>
+            <div class="hero-text">
+                <h1>Hi! My name is Haziq.</h1>
+                <p class="current-occupation">[ Data Analytic Student ]</p>
+                <p class="hero-lead">
+                    Specializing in localized pipeline configurations, interactive script architecture, and structural narrative network models.
+                </p>
+            </div>
+        </main>
 
-        <div class="hero-text">
-            <h1>Hi! My name is Haziq.</h1>
-            <p class="current-occupation">[ Data Analytic Student ]</p>
-            <p class="hero-lead">
-                Specializing in localized pipeline configurations, interactive script architecture, and structural narrative network models.
-            </p>
-        </div>
-
-    </main>
-
-    <script>
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        
-        let clusters = [];
-        let scrollSpeedMultiplier = 1;
-        let lastScrollTop = 0;
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            initGraph();
-        }
-        window.addEventListener('resize', resizeCanvas);
-
-        class Node {
-            constructor(x, y, radius, isHub, parent = null) {
-                this.x = x;
-                this.y = y;
-                this.radius = radius;
-                this.isHub = isHub;
-                this.parent = parent;
+        <!-- SECTION 2: PRODUCTION-READY ABOUT VIEWPORT -->
+        <section id="about" class="about-container">
+            <div class="about-content-box">
+                <div class="section-bracket">// START_ABOUT_CORE</div>
                 
-                // Fine-tuned slow drift constants
-                this.vx = (Math.random() - 0.5) * 0.25;
-                this.vy = (Math.random() - 0.5) * 0.25;
-                
-                this.angle = Math.random() * Math.PI * 2;
-                this.orbitSpeed = (Math.random() - 0.5) * 0.006;
-                this.orbitRadius = parent ? Math.sqrt(Math.pow(this.x - parent.x, 2) + Math.pow(this.y - parent.y, 2)) : 0;
-            }
+                <div class="about-main-layout">
+                    <!-- Tech Bio Text Layer -->
+                    <div class="bio-text-block">
+                        <p class="bio-paragraph">
+                            I focus on breaking down complex data structures and building programmatic solutions. Whether architecting backend processing workflows or optimizing interactive visualization models, I look for clean infrastructure.
+                        </p>
+                        <p class="bio-paragraph comment-text">
+                            /* Currently exploring predictive pattern tracking networks and advanced multi-dimensional localized script pipelines. */
+                        </p>
+                    </div>
 
-            update() {
-                if (this.isHub) {
-                    this.x += this.vx * scrollSpeedMultiplier;
-                    this.y += this.vy * scrollSpeedMultiplier;
+                    <!-- Hardcoded Technical Counters Grid -->
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <span class="metric-number">02+</span>
+                            <span class="metric-label">Years Tracked</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-number">12+</span>
+                            <span class="metric-label">Systems Built</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-number">48k</span>
+                            <span class="metric-label">Lines Evaluated</span>
+                        </div>
+                    </div>
+                </div>
 
-                    if (this.x < 100 || this.x > canvas.width - 100) this.vx *= -1;
-                    if (this.y < 100 || this.y > canvas.height - 100) this.vy *= -1;
-                } else {
-                    this.angle += this.orbitSpeed * scrollSpeedMultiplier;
-                    this.x = this.parent.x + Math.cos(this.angle) * this.orbitRadius;
-                    this.y = this.parent.y + Math.sin(this.angle) * this.orbitRadius;
-                }
-            }
+                <div class="section-bracket">// END_ABOUT_CORE</div>
+            </div>
+        </section>
 
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = this.isHub ? 'rgba(129, 140, 248, 0.9)' : 'rgba(99, 102, 241, 0.55)';
-                ctx.fill();
-                
-                // Extended outmost hub framework ring
-                if (this.isHub) {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.radius + 10, 0, Math.PI * 2);
-                    ctx.strokeStyle = 'rgba(129, 140, 248, 0.12)';
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            }
-        }
+    </div>
 
-        function initGraph() {
-            clusters = [];
-            const hubCount = 5;             // Increased hub density across wide screens
-            const satellitesPerHub = 13;    // Boosted satellite count for high complexity structural visualization
-
-            for (let i = 0; i < hubCount; i++) {
-                let rx = 150 + Math.random() * (canvas.width - 300);
-                let ry = 150 + Math.random() * (canvas.height - 300);
-                
-                // Central Hub: Radius scaled up to 9px
-                let hub = new Node(rx, ry, 9, true);
-                clusters.push(hub);
-
-                for (let j = 0; j < satellitesPerHub; j++) {
-                    // Extended vector reach parameters (longer structural line lengths)
-                    let distance = 60 + Math.random() * 90;
-                    let angle = (j / satellitesPerHub) * Math.PI * 2;
-                    let cx = hub.x + Math.cos(angle) * distance;
-                    let cy = hub.y + Math.sin(angle) * distance;
-                    
-                    // Satellite Nodes: Radius scaled up to 4px
-                    clusters.push(new Node(cx, cy, 4, false, hub));
-                }
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            if (scrollSpeedMultiplier > 1) {
-                scrollSpeedMultiplier -= 0.06;
-            } else {
-                scrollSpeedMultiplier = 1;
-            }
-
-            // Draw structural mesh data links
-            clusters.forEach(node => {
-                if (!node.isHub && node.parent) {
-                    ctx.beginPath();
-                    ctx.moveTo(node.x, node.y);
-                    ctx.lineTo(node.parent.x, node.parent.y);
-                    ctx.strokeStyle = 'rgba(99, 102, 241, 0.15)';
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            });
-
-            clusters.forEach(node => {
-                node.update();
-                node.draw();
-            });
-
-            requestAnimationFrame(animate);
-        }
-
-        window.addEventListener('scroll', () => {
-            const st = window.pageYOffset || document.documentElement.scrollTop;
-            const delta = Math.abs(st - lastScrollTop);
-            scrollSpeedMultiplier = Math.min(8, 1 + delta * 0.25);
-            lastScrollTop = st <= 0 ? 0 : st;
-        }, { passive: true });
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        initGraph();
-        animate();
-    </script>
+    <!-- LINKING TO EXTERNAL MODULE SYSTEM -->
+    <script src="background.js"></script>
 </body>
 </html>
