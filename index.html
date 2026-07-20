@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Hub</title>
+    <title>Developer Hub // Haziq Hafizuddin</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,36 +12,123 @@
     <!-- GPU-ACCELERATED BACKGROUND CANVAS LAYER -->
     <canvas id="bg-canvas"></canvas>
 
-    <!-- MANDATORY SCROLL SNAP CONTAINER GRID -->
+    <!-- TOP NAVIGATION HUD FRAME -->
+    <header class="top-nav">
+        <div class="nav-brand">HAZIQ // PORTFOLIO</div>
+        <nav class="nav-links">
+            <button class="nav-link active" onclick="executeSceneSweep(0)">// 01. HERO</button>
+            <button class="nav-link" onclick="executeSceneSweep(1)">// 02. ABOUT</button>
+        </nav>
+        <div class="nav-actions">
+            <a href="https://github.com/haziqkeko" target="_blank" class="icon-link" aria-label="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/haziq-hafizuddin-210b66288/" target="_blank" class="icon-link" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- MANDATORY SCROLL WRAPPER GRID -->
     <div class="scroll-wrapper" id="main-scroller">
 
         <!-- SECTION 1: HERO VIEWPORT -->
-        <main class="hero-container">
-            <div class="badge-row">
-                <div class="status-badge status-warning">
-                    <span class="status-dot"></span>
-                    Degree Studies Active
+        <main class="hero-container" id="hero">
+            <div class="hero-split">
+                
+                <!-- Left Column: Bio & Dual Tech Stack Ticker -->
+                <div class="hero-content">
+                    <div class="badge-row">
+                        <div class="status-badge status-warning">
+                            <span class="status-dot"></span>
+                            Degree in Data Analytics In Progress
+                        </div>
+                        <div class="status-badge status-success">
+                            <span class="status-dot"></span>
+                            Available for Internships
+                        </div>
+                    </div>
+
+                    <div class="hero-text">
+                        <h1>Haziq Hafizuddin</h1>
+                        <p class="current-occupation">Data Analytics Student</p>
+                        
+                        <!-- Styled Quote Card Block -->
+                        <blockquote class="hero-lead">
+                            <p>"No matter how ridiculous the odds may seem, within us resides the power to overcome these challenges and achieve something beautiful, that one day we look back at where we started and be amazed by how far we've come."</p>
+                            <cite class="quote-author">— Alex T.</cite>
+                        </blockquote>
+                    </div>
+
+                    <!-- Dual-Row Tech Stack Infinite Tickers -->
+                    <div class="tech-pills-wrapper">
+                        <!-- Row 1: Core Tech Stack (Scrolls Left) -->
+                        <div class="tech-pills-container">
+                            <div class="tech-pills-track track-forward">
+                                <span class="pill">Python</span>
+                                <span class="pill">R</span>
+                                <span class="pill">SQL</span>
+                                <span class="pill">Git</span>
+                                <span class="pill">PostgreSQL</span>
+                                <span class="pill">C/C++</span>
+                                <span class="pill">Colab</span>
+
+                                <!-- Duplicated for Seamless Loop -->
+                                <span class="pill">Python</span>
+                                <span class="pill">R</span>
+                                <span class="pill">SQL</span>
+                                <span class="pill">Git</span>
+                                <span class="pill">PostgreSQL</span>
+                                <span class="pill">C/C++</span>
+                                <span class="pill">Colab</span>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Data Analytics Skills (Scrolls Right/Reverse) -->
+                        <div class="tech-pills-container">
+                            <div class="tech-pills-track track-reverse">
+                                <span class="pill">Tableau</span>
+                                <span class="pill">Power BI</span>
+                                <span class="pill">Pandas</span>
+                                <span class="pill">NumPy</span>
+                                <span class="pill">Data Wrangling</span>
+                                <span class="pill">Data Visualization</span>
+                                <span class="pill">Data Warehousing</span>
+                                <span class="pill">Experimental Data Analysis</span>
+                                <span class="pill">Multivariate Data Analysis</span>
+
+                                <!-- Duplicated for Seamless Loop -->
+                                <span class="pill">Tableau</span>
+                                <span class="pill">Power BI</span>
+                                <span class="pill">Pandas</span>
+                                <span class="pill">NumPy</span>
+                                <span class="pill">Data Wrangling</span>
+                                <span class="pill">Data Visualization</span>
+                                <span class="pill">Data Warehousing</span>
+                                <span class="pill">Experimental Data Analysis</span>
+                                <span class="pill">Multivariate Data Analysis</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="status-badge status-success">
-                    <span class="status-dot"></span>
-                    Available for Internships
+
+                <!-- Right Column: Scaled-up Profile Photo -->
+                <div class="hero-visual">
+                    <div class="profile-card">
+                        <img src="assets/me.png" alt="Haziq Hafizuddin profile photo" class="profile-img" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=haziq'">
+                    </div>
                 </div>
+
             </div>
 
-            <div class="profile-frame">
-                <img src="assets/me.png" alt="Profile avatar" class="profile-img" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=haziq'">
-            </div>
-
-            <div class="hero-text">
-                <h1>Hi! My name is Haziq.</h1>
-                <p class="current-occupation">[ Data Analytic Student ]</p>
-                <p class="hero-lead">
-                    Specializing in localized pipeline configurations, interactive script architecture, and structural narrative network models.
-                </p>
+            <!-- Bottom Scroll Prompt Indicator -->
+            <div class="scroll-prompt" onclick="executeSceneSweep(1)">
+                <span>[ SCROLL_DOWN ]</span>
+                <span class="prompt-arrow">↓</span>
             </div>
         </main>
 
-        <!-- SECTION 2: PRODUCTION-READY ABOUT VIEWPORT -->
+        <!-- SECTION 2: ABOUT VIEWPORT -->
         <section id="about" class="about-container">
             <div class="about-content-box">
                 <div class="section-bracket">// START_ABOUT_CORE</div>
@@ -57,7 +144,30 @@
                         </p>
                     </div>
 
-                    <!-- Hardcoded Technical Counters Grid -->
+                    <!-- Data Analytics Skills Capabilities Matrix -->
+                    <div class="analytics-skills-block">
+                        <span class="skills-title">// CORE_ANALYTICS_CAPABILITIES</span>
+                        <div class="skills-list">
+                            <div class="skill-tag">
+                                <span class="skill-dot"></span>
+                                <span class="skill-name">Data Wrangling & Pipeline Automation</span>
+                            </div>
+                            <div class="skill-tag">
+                                <span class="skill-dot"></span>
+                                <span class="skill-name">Exploratory Data Analysis (EDA) & Modeling</span>
+                            </div>
+                            <div class="skill-tag">
+                                <span class="skill-dot"></span>
+                                <span class="skill-name">Interactive Dashboarding & BI Reporting</span>
+                            </div>
+                            <div class="skill-tag">
+                                <span class="skill-dot"></span>
+                                <span class="skill-name">Statistical Hypothesis Testing & Query Optimization</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technical Counters Grid -->
                     <div class="metrics-grid">
                         <div class="metric-card">
                             <span class="metric-number">02+</span>
