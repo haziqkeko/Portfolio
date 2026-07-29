@@ -22,8 +22,10 @@ html, body {
     color: var(--text-primary);
     font-family: 'JetBrains Mono', monospace;
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
 }
 
 /* =========================================================================
@@ -40,7 +42,7 @@ html, body {
     justify-content: space-between;
     align-items: center;
     z-index: 50;
-    background: rgba(6, 9, 17, 0.75);
+    background: rgba(6, 9, 17, 0.85);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(86, 104, 133, 0.15);
 }
@@ -89,12 +91,11 @@ html, body {
 }
 
 /* =========================================================================
-   3. INTERACTIVE SCROLL STAGING
+   3. DOCUMENT SCROLL WRAPPER
    ========================================================================= */
 .scroll-wrapper {
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
     position: relative;
     z-index: 10;
 }
@@ -109,37 +110,25 @@ html, body {
     pointer-events: none;      
 }
 
-.hero-container, .about-container {
+.hero-container, .about-container, .projects-container {
     width: 100%;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform;
+    min-height: 100vh;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 5rem 2.5rem 2.5rem 2.5rem;
+    padding: 6rem 2.5rem 4rem 2.5rem;
+    box-sizing: border-box;
 }
 
-/* ABOUT VIEWPORT OVERFLOW & PADDING ADJUSTMENT */
-.about-container {
-    transform: translateY(100%);
-    overflow-y: auto; /* Allows smooth scrolling if screen height is compact */
-    padding: 4.5rem 2.5rem 3rem 2.5rem;
-    justify-content: flex-start; /* Prevents top text cutoff on snap */
+.about-container, .projects-container {
+    padding: 5rem 2.5rem 4rem 2.5rem;
 }
 
 /* =========================================================================
    4. SECTION 1: HERO VIEWPORT & SPLIT GRID
    ========================================================================= */
-.hero-container {
-    transform: translateY(0%);
-}
-
 .hero-split {
     max-width: 1240px;
     width: 100%;
@@ -147,6 +136,7 @@ html, body {
     grid-template-columns: 1.15fr 0.85fr;
     gap: 4rem;
     align-items: center;
+    min-width: 0;
 }
 
 .hero-content {
@@ -154,6 +144,7 @@ html, body {
     flex-direction: column;
     gap: 1.2rem;
     text-align: left;
+    min-width: 0;
 }
 
 /* STATUS BADGES */
@@ -218,7 +209,6 @@ html, body {
     align-items: center;
 }
 
-/* BLINKING TERMINAL CARET BLOCK */
 .current-occupation::after {
     content: '';
     display: inline-block;
@@ -274,12 +264,14 @@ html, body {
     width: 100%;
     max-width: 520px;
     margin-top: 0.2rem;
+    min-width: 0;
 }
 
 .tech-pills-container {
     width: 100%;
     overflow: hidden;
     display: flex;
+    min-width: 0;
     mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
@@ -288,6 +280,7 @@ html, body {
     display: flex;
     gap: 0.6rem;
     width: max-content;
+    flex-shrink: 0;
 }
 
 .track-forward {
@@ -329,6 +322,7 @@ html, body {
     justify-content: center;
     align-items: center;
     width: 100%;
+    min-width: 0;
 }
 
 .profile-card {
@@ -353,8 +347,7 @@ html, body {
 
 /* SCROLL PROMPT */
 .scroll-prompt {
-    position: absolute;
-    bottom: 1.2rem;
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -389,13 +382,6 @@ html, body {
     margin: 0 auto;
 }
 
-.section-bracket {
-    color: var(--text-secondary);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-}
-
 .about-main-layout {
     border-left: 1px dashed rgba(86, 104, 133, 0.3);
     padding-left: 1.5rem;
@@ -403,24 +389,6 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-}
-
-.bio-text-block {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-}
-
-.bio-paragraph {
-    color: var(--text-primary);
-    font-size: 0.82rem;
-    line-height: 1.6;
-    letter-spacing: -0.01em;
-}
-
-.comment-text {
-    color: var(--text-secondary);
-    font-style: italic;
 }
 
 /* D3 INTERACTIVE GRAPH CARD */
@@ -505,10 +473,17 @@ html, body {
     border: 1px solid rgba(86, 104, 133, 0.15);
     overflow: hidden;
     cursor: grab;
+    position: relative;
 }
 
 #graph-wrapper:active {
     cursor: grabbing;
+}
+
+#skill-graph {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 .graph-legend {
@@ -537,7 +512,6 @@ html, body {
     gap: 0.8rem;
     width: 100%;
     margin-top: 0.2rem;
-    margin-bottom: 1.5rem; /* Extra breathing space at the bottom */
 }
 
 .metric-card {
@@ -566,7 +540,190 @@ html, body {
 }
 
 /* =========================================================================
-   6. RESPONSIVE BREAKPOINTS (MOBILE & TABLET ADJUSTMENTS)
+   6. SECTION 3: PROJECTS SHOWCASE GRID & HOVER OVERLAYS
+   ========================================================================= */
+.projects-content-box {
+    max-width: 1240px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.projects-header-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px dashed rgba(86, 104, 133, 0.3);
+    padding-bottom: 0.8rem;
+}
+
+.projects-header-block h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent-glow);
+    letter-spacing: 0.05em;
+}
+
+.projects-count-tag {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* PROJECT CARD COMPONENT */
+.project-card {
+    background: rgba(13, 21, 39, 0.65);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(86, 104, 133, 0.25);
+    border-radius: 8px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(129, 140, 248, 0.5);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(129, 140, 248, 0.1);
+}
+
+.project-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project-date {
+    font-size: 0.68rem;
+    color: var(--accent-warning);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+.project-repo-link {
+    color: var(--text-secondary);
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+}
+
+.project-repo-link:hover {
+    color: var(--accent-glow);
+    transform: scale(1.1);
+}
+
+.project-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.project-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+}
+
+.project-summary {
+    font-size: 0.78rem;
+    color: var(--text-primary);
+    line-height: 1.55;
+    opacity: 0.88;
+}
+
+.project-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: auto;
+}
+
+.tech-tag {
+    background: rgba(6, 9, 17, 0.6);
+    border: 1px solid rgba(129, 140, 248, 0.22);
+    color: var(--accent-glow);
+    font-size: 0.64rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+/* MINI-SUMMARY HOVER OVERLAY */
+.project-hover-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 21, 39, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--accent-glow);
+    border-radius: 8px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.project-card:hover .project-hover-overlay {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.overlay-badge {
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: var(--accent-success);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.overlay-text {
+    font-size: 0.78rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.overlay-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.overlay-action-link {
+    font-size: 0.72rem;
+    color: var(--accent-glow);
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: gap 0.2s ease;
+}
+
+.overlay-action-link:hover {
+    gap: 0.5rem;
+}
+
+/* =========================================================================
+   7. RESPONSIVE BREAKPOINTS
    ========================================================================= */
 @media (max-width: 868px) {
     .top-nav {
@@ -578,8 +735,7 @@ html, body {
     }
 
     .hero-container {
-        padding: 4.5rem 1.25rem 2.5rem 1.25rem;
-        overflow-y: auto;
+        padding: 5rem 1.25rem 3rem 1.25rem;
     }
 
     .hero-split {
@@ -610,6 +766,19 @@ html, body {
         display: none;
     }
 
+    .about-container, .projects-container {
+        padding: 4rem 1rem 3rem 1rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-main-layout {
+        padding-left: 0.8rem;
+        margin-left: 0;
+    }
+
     .graph-hud-header {
         flex-direction: column;
         align-items: flex-start;
@@ -617,5 +786,22 @@ html, body {
 
     #node-search {
         width: 100%;
+    }
+
+    .filter-pills {
+        display: flex;
+        overflow-x: auto;
+        width: 100%;
+        padding-bottom: 3px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .filter-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    #graph-wrapper {
+        height: 260px;
     }
 }

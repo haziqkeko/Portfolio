@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="style.css">
     <!-- D3.JS FOR INTERACTIVE NODE-LINK GRAPH -->
-    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 </head>
 <body>
 
@@ -16,10 +16,11 @@
 
     <!-- TOP NAVIGATION HUD FRAME -->
     <header class="top-nav">
-        <div class="nav-brand">HAZIQ // PORTFOLIO_OS</div>
+        <div class="nav-brand">HAZIQ | PORTFOLIO</div>
         <nav class="nav-links">
-            <button class="nav-link active" onclick="executeSceneSweep(0)">// 01. HERO</button>
-            <button class="nav-link" onclick="executeSceneSweep(1)">// 02. ABOUT</button>
+            <button class="nav-link active" onclick="executeSceneSweep(0)">01. FRONT PAGE</button>
+            <button class="nav-link" onclick="executeSceneSweep(1)">02. ABOUT</button>
+            <button class="nav-link" onclick="executeSceneSweep(2)">03. PROJECTS</button>
         </nav>
         <div class="nav-actions">
             <a href="https://github.com/haziqkeko" target="_blank" class="icon-link" aria-label="GitHub">
@@ -95,23 +96,11 @@
         <!-- SECTION 2: ABOUT VIEWPORT -->
         <section id="about" class="about-container">
             <div class="about-content-box">
-                <div class="section-bracket">// START_ABOUT_CORE[cite: 1]</div>
-                
                 <div class="about-main-layout">
-                    <!-- Tech Bio Text Layer -->
-                    <div class="bio-text-block">
-                        <p class="bio-paragraph">
-                            I focus on breaking down complex data structures and building programmatic solutions. Whether architecting backend processing workflows or optimizing interactive visualization models, I look for clean infrastructure.[cite: 1]
-                        </p>
-                        <p class="bio-paragraph comment-text">
-                            /* Currently exploring predictive pattern tracking networks and advanced multi-dimensional localized script pipelines. */[cite: 1]
-                        </p>
-                    </div>
-
                     <!-- Interactive D3 Network Diagram Box -->
                     <div class="graph-card">
                         <div class="graph-hud-header">
-                            <span class="skills-title">// SKILLSET_NETWORK_GRAPH[cite: 1]</span>
+                            <span class="skills-title">SKILLSET</span>
                             <div class="graph-hud-controls">
                                 <input type="text" id="node-search" placeholder="Search skills (e.g. Python)..." />
                                 <div class="filter-pills">
@@ -134,7 +123,7 @@
                         </div>
                     </div>
 
-                    <!-- Technical Counters Grid (Side-by-Side Flex Layout) -->
+                    <!-- Technical Counters Grid -->
                     <div class="metrics-grid">
                         <div class="metric-card">
                             <span class="metric-number">04</span>
@@ -146,8 +135,132 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="section-bracket">// END_ABOUT_CORE[cite: 1]</div>
+        <!-- SECTION 3: PROJECTS SHOWCASE -->
+        <section id="projects" class="projects-container">
+            <div class="projects-content-box">
+                <div class="projects-header-block">
+                    <h2>PROJECTS</h2>
+                    <span class="projects-count-tag">[ 04 TOTAL_REPOS ]</span>
+                </div>
+
+                <div class="projects-grid">
+
+                    <!-- PROJECT TILE TEMPLATE 1 -->
+                    <article class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-date">MAR 2026</span>
+                            <a href="https://github.com/haziqkeko" target="_blank" class="project-repo-link" aria-label="View Source Code">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            </a>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">Project One Placeholder</h3>
+                            <p class="project-summary">Short overview of the project scope, technical stack implementation, and primary objective.</p>
+                        </div>
+                        <div class="project-tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Pandas</span>
+                        </div>
+
+                        <!-- Mini Summary Hover Overlay -->
+                        <div class="project-hover-overlay">
+                            <span class="overlay-badge">OVERVIEW & METRICS</span>
+                            <p class="overlay-text">Hover over details reveal deep technical highlights, dataset scope, key algorithm implementation, or performance results.</p>
+                            <div class="overlay-footer">
+                                <a href="https://github.com/haziqkeko" target="_blank" class="overlay-action-link">View Repository →</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PROJECT TILE TEMPLATE 2 -->
+                    <article class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-date">JAN 2026</span>
+                            <a href="https://github.com/haziqkeko" target="_blank" class="project-repo-link" aria-label="View Source Code">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            </a>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">Project Two Placeholder</h3>
+                            <p class="project-summary">Short overview of the project scope, technical stack implementation, and primary objective.</p>
+                        </div>
+                        <div class="project-tech-stack">
+                            <span class="tech-tag">R</span>
+                            <span class="tech-tag">Tableau</span>
+                            <span class="tech-tag">EDA</span>
+                        </div>
+
+                        <!-- Mini Summary Hover Overlay -->
+                        <div class="project-hover-overlay">
+                            <span class="overlay-badge">OVERVIEW & METRICS</span>
+                            <p class="overlay-text">Hover over details reveal deep technical highlights, dataset scope, key algorithm implementation, or performance results.</p>
+                            <div class="overlay-footer">
+                                <a href="https://github.com/haziqkeko" target="_blank" class="overlay-action-link">View Repository →</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PROJECT TILE TEMPLATE 3 -->
+                    <article class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-date">NOV 2025</span>
+                            <a href="https://github.com/haziqkeko" target="_blank" class="project-repo-link" aria-label="View Source Code">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            </a>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">Project Three Placeholder</h3>
+                            <p class="project-summary">Short overview of the project scope, technical stack implementation, and primary objective.</p>
+                        </div>
+                        <div class="project-tech-stack">
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Data Warehousing</span>
+                        </div>
+
+                        <!-- Mini Summary Hover Overlay -->
+                        <div class="project-hover-overlay">
+                            <span class="overlay-badge">OVERVIEW & METRICS</span>
+                            <p class="overlay-text">Hover over details reveal deep technical highlights, dataset scope, key algorithm implementation, or performance results.</p>
+                            <div class="overlay-footer">
+                                <a href="https://github.com/haziqkeko" target="_blank" class="overlay-action-link">View Repository →</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PROJECT TILE TEMPLATE 4 -->
+                    <article class="project-card">
+                        <div class="project-card-header">
+                            <span class="project-date">SEP 2025</span>
+                            <a href="https://github.com/haziqkeko" target="_blank" class="project-repo-link" aria-label="View Source Code">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            </a>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">Project Four Placeholder</h3>
+                            <p class="project-summary">Short overview of the project scope, technical stack implementation, and primary objective.</p>
+                        </div>
+                        <div class="project-tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">C/C++</span>
+                            <span class="tech-tag">Multivariate Analysis</span>
+                        </div>
+
+                        <!-- Mini Summary Hover Overlay -->
+                        <div class="project-hover-overlay">
+                            <span class="overlay-badge">OVERVIEW & METRICS</span>
+                            <p class="overlay-text">Hover over details reveal deep technical highlights, dataset scope, key algorithm implementation, or performance results.</p>
+                            <div class="overlay-footer">
+                                <a href="https://github.com/haziqkeko" target="_blank" class="overlay-action-link">View Repository →</a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
             </div>
         </section>
 
@@ -155,6 +268,43 @@
 
     <!-- BACKGROUND CANVAS SCRIPT -->
     <script src="background.js"></script>
+
+    <!-- NAVIGATION SMOOTH SCROLL & OBSERVER -->
+    <script>
+        function executeSceneSweep(sectionIndex) {
+            const targets = ["hero", "about", "projects"];
+            const targetSection = document.getElementById(targets[sectionIndex]);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = [
+                document.getElementById('hero'), 
+                document.getElementById('about'),
+                document.getElementById('projects')
+            ];
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        if (entry.target.id === 'hero' && navLinks[0]) {
+                            navLinks[0].classList.add('active');
+                        } else if (entry.target.id === 'about' && navLinks[1]) {
+                            navLinks[1].classList.add('active');
+                        } else if (entry.target.id === 'projects' && navLinks[2]) {
+                            navLinks[2].classList.add('active');
+                        }
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            sections.forEach(sec => sec && observer.observe(sec));
+        });
+    </script>
 
     <!-- UNIFIED SINGLE SOURCE OF TRUTH & D3 SCRIPT -->
     <script>
@@ -177,7 +327,7 @@
             { id: "Multivariate Analysis", cat: "analytics", row: 2 }
         ];
 
-        const linksData = [
+        const linksMaster = [
             { source: "Python", target: "Pandas" },
             { source: "Python", target: "NumPy" },
             { source: "Python", target: "EDA" },
@@ -205,150 +355,162 @@
 
         renderHeroTickers();
 
-        const nodesData = JSON.parse(JSON.stringify(SKILLS_MASTER));
-        const wrapper = document.getElementById("graph-wrapper");
-        const width = wrapper.clientWidth || 640;
-        const height = 300; // Adjusted graph height for optimized vertical fit
+        let simulation = null;
 
-        const svg = d3.select("#skill-graph")
-            .attr("width", width)
-            .attr("height", height);
+        function initGraph() {
+            const wrapper = document.getElementById("graph-wrapper");
+            if (!wrapper || typeof d3 === 'undefined') return;
 
-        const centralSkills = ["Python", "SQL", "Data Visualization"];
+            const svg = d3.select("#skill-graph");
+            svg.selectAll("*").remove();
 
-        nodesData.forEach(d => {
-            d.width = Math.max(d.id.length * 7.2 + 22, 56);
-            d.height = 26;
-            if (d.id === "Python") {
-                d.x = width / 2 - 60; d.y = height / 2 - 30;
-            } else if (d.id === "SQL") {
-                d.x = width / 2 + 60; d.y = height / 2 - 30;
-            } else if (d.id === "Data Visualization") {
-                d.x = width / 2; d.y = height / 2 + 40;
-            } else {
-                d.x = width / 2 + (Math.random() - 0.5) * 140;
-                d.y = height / 2 + (Math.random() - 0.5) * 140;
+            const width = wrapper.clientWidth || 640;
+            const height = 300;
+
+            svg.attr("viewBox", `0 0 ${width} ${height}`)
+               .attr("width", "100%")
+               .attr("height", "100%");
+
+            const nodesData = JSON.parse(JSON.stringify(SKILLS_MASTER));
+            const linksData = JSON.parse(JSON.stringify(linksMaster));
+
+            const centralSkills = ["Python", "SQL", "Data Visualization"];
+
+            nodesData.forEach(d => {
+                d.width = Math.max(d.id.length * 7.2 + 22, 56);
+                d.height = 26;
+                if (d.id === "Python") {
+                    d.x = width / 2 - 60; d.y = height / 2 - 30;
+                } else if (d.id === "SQL") {
+                    d.x = width / 2 + 60; d.y = height / 2 - 30;
+                } else if (d.id === "Data Visualization") {
+                    d.x = width / 2; d.y = height / 2 + 40;
+                } else {
+                    d.x = width / 2 + (Math.random() - 0.5) * 140;
+                    d.y = height / 2 + (Math.random() - 0.5) * 140;
+                }
+            });
+
+            const getColor = (cat) => {
+                if (cat === "lang") return "#818cf8";
+                if (cat === "tool") return "#34d399";
+                return "#f59e0b";
+            };
+
+            simulation = d3.forceSimulation(nodesData)
+                .force("link", d3.forceLink(linksData).id(d => d.id).distance(80))
+                .force("charge", d3.forceManyBody().strength(-200))
+                .force("center", d3.forceCenter(width / 2, height / 2))
+                .force("centralX", d3.forceX(width / 2).strength(d => centralSkills.includes(d.id) ? 0.35 : 0.04))
+                .force("centralY", d3.forceY(height / 2).strength(d => centralSkills.includes(d.id) ? 0.35 : 0.04))
+                .force("collide", d3.forceCollide().radius(d => d.width / 2 + 8));
+
+            const link = svg.append("g")
+                .attr("stroke", "rgba(86, 104, 133, 0.35)")
+                .attr("stroke-width", 1.5)
+                .selectAll("line")
+                .data(linksData)
+                .join("line");
+
+            const node = svg.append("g")
+                .selectAll(".node")
+                .data(nodesData)
+                .join("g")
+                .attr("class", "node")
+                .style("cursor", "grab")
+                .call(d3.drag()
+                    .on("start", (e, d) => {
+                        if (!e.active) simulation.alphaTarget(0.3).restart();
+                        d.fx = d.x; d.fy = d.y;
+                    })
+                    .on("drag", (e, d) => {
+                        d.fx = e.x; d.fy = e.y;
+                    })
+                    .on("end", (e, d) => {
+                        if (!e.active) simulation.alphaTarget(0);
+                        d.fx = null; d.fy = null;
+                    }));
+
+            node.append("rect")
+                .attr("x", d => -d.width / 2)
+                .attr("y", -12)
+                .attr("width", d => d.width)
+                .attr("height", 24)
+                .attr("rx", 12)
+                .attr("ry", 12)
+                .attr("fill", "rgba(13, 21, 39, 0.95)")
+                .attr("stroke", d => getColor(d.cat))
+                .attr("stroke-width", 1.5);
+
+            node.append("text")
+                .text(d => d.id)
+                .attr("text-anchor", "middle")
+                .attr("dy", "0.35em")
+                .attr("fill", "#e2e8f0")
+                .attr("font-size", "10px")
+                .attr("font-weight", "500")
+                .attr("font-family", "'JetBrains Mono', monospace")
+                .attr("pointer-events", "none");
+
+            simulation.on("tick", () => {
+                node.attr("transform", d => {
+                    const padX = d.width / 2 + 8;
+                    const padY = 16;
+                    d.x = Math.max(padX, Math.min(width - padX, d.x));
+                    d.y = Math.max(padY, Math.min(height - padY, d.y));
+                    return `translate(${d.x},${d.y})`;
+                });
+
+                link
+                    .attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+            });
+
+            let currentSearch = "";
+            let currentCat = "all";
+
+            function updateGraphFilter() {
+                node.style("opacity", d => {
+                    const matchesSearch = d.id.toLowerCase().includes(currentSearch);
+                    const matchesCat = currentCat === "all" || d.cat === currentCat;
+                    return matchesSearch && matchesCat ? 1 : 0.12;
+                });
+
+                link.style("opacity", l => {
+                    const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+                    const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+                    const sourceCat = typeof l.source === 'object' ? l.source.cat : '';
+                    const targetCat = typeof l.target === 'object' ? l.target.cat : '';
+
+                    const sourceMatch = sourceId.toLowerCase().includes(currentSearch) && (currentCat === "all" || sourceCat === currentCat);
+                    const targetMatch = targetId.toLowerCase().includes(currentSearch) && (currentCat === "all" || targetCat === currentCat);
+                    return sourceMatch || targetMatch ? 0.6 : 0.05;
+                });
             }
-        });
 
-        wrapper.addEventListener("mousedown", (e) => e.stopPropagation());
-        wrapper.addEventListener("touchstart", (e) => e.stopPropagation());
+            const searchInput = document.getElementById("node-search");
+            if (searchInput) {
+                searchInput.addEventListener("input", (e) => {
+                    currentSearch = e.target.value.toLowerCase().trim();
+                    updateGraphFilter();
+                });
+            }
 
-        const getColor = (cat) => {
-            if (cat === "lang") return "#818cf8";
-            if (cat === "tool") return "#34d399";
-            return "#f59e0b";
-        };
-
-        const simulation = d3.forceSimulation(nodesData)
-            .force("link", d3.forceLink(linksData).id(d => d.id).distance(80))
-            .force("charge", d3.forceManyBody().strength(-200))
-            .force("center", d3.forceCenter(width / 2, height / 2))
-            .force("centralX", d3.forceX(width / 2).strength(d => centralSkills.includes(d.id) ? 0.35 : 0.04))
-            .force("centralY", d3.forceY(height / 2).strength(d => centralSkills.includes(d.id) ? 0.35 : 0.04))
-            .force("collide", d3.forceCollide().radius(d => d.width / 2 + 8));
-
-        const link = svg.append("g")
-            .attr("stroke", "rgba(86, 104, 133, 0.35)")
-            .attr("stroke-width", 1.5)
-            .selectAll("line")
-            .data(linksData)
-            .join("line");
-
-        const node = svg.append("g")
-            .selectAll(".node")
-            .data(nodesData)
-            .join("g")
-            .attr("class", "node")
-            .style("cursor", "grab")
-            .call(d3.drag()
-                .on("start", dragstarted)
-                .on("drag", dragged)
-                .on("end", dragended));
-
-        node.append("rect")
-            .attr("x", d => -d.width / 2)
-            .attr("y", -12)
-            .attr("width", d => d.width)
-            .attr("height", 24)
-            .attr("rx", 12)
-            .attr("ry", 12)
-            .attr("fill", "rgba(13, 21, 39, 0.95)")
-            .attr("stroke", d => getColor(d.cat))
-            .attr("stroke-width", 1.5);
-
-        node.append("text")
-            .text(d => d.id)
-            .attr("text-anchor", "middle")
-            .attr("dy", "0.35em")
-            .attr("fill", "#e2e8f0")
-            .attr("font-size", "10px")
-            .attr("font-weight", "500")
-            .attr("font-family", "'JetBrains Mono', monospace")
-            .attr("pointer-events", "none");
-
-        simulation.on("tick", () => {
-            node.attr("transform", d => {
-                const padX = d.width / 2 + 8;
-                const padY = 16;
-                d.x = Math.max(padX, Math.min(width - padX, d.x));
-                d.y = Math.max(padY, Math.min(height - padY, d.y));
-                return `translate(${d.x},${d.y})`;
-            });
-
-            link
-                .attr("x1", d => d.source.x)
-                .attr("y1", d => d.source.y)
-                .attr("x2", d => d.target.x)
-                .attr("y2", d => d.target.y);
-        });
-
-        function dragstarted(event, d) {
-            if (!event.active) simulation.alphaTarget(0.3).restart();
-            d.fx = d.x;
-            d.fy = d.y;
-        }
-
-        function dragged(event, d) {
-            d.fx = event.x;
-            d.fy = event.y;
-        }
-
-        function dragended(event, d) {
-            if (!event.active) simulation.alphaTarget(0);
-            d.fx = null;
-            d.fy = null;
-        }
-
-        let currentSearch = "";
-        let currentCat = "all";
-
-        function updateGraphFilter() {
-            node.style("opacity", d => {
-                const matchesSearch = d.id.toLowerCase().includes(currentSearch);
-                const matchesCat = currentCat === "all" || d.cat === currentCat;
-                return matchesSearch && matchesCat ? 1 : 0.12;
-            });
-
-            link.style("opacity", l => {
-                const sourceMatch = l.source.id.toLowerCase().includes(currentSearch) && (currentCat === "all" || l.source.cat === currentCat);
-                const targetMatch = l.target.id.toLowerCase().includes(currentSearch) && (currentCat === "all" || l.target.cat === currentCat);
-                return sourceMatch || targetMatch ? 0.6 : 0.05;
+            document.querySelectorAll(".filter-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    currentCat = btn.getAttribute("data-category");
+                    updateGraphFilter();
+                });
             });
         }
 
-        document.getElementById("node-search").addEventListener("input", (e) => {
-            currentSearch = e.target.value.toLowerCase().trim();
-            updateGraphFilter();
-        });
-
-        document.querySelectorAll(".filter-btn").forEach(btn => {
-            btn.addEventListener("click", () => {
-                document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-                currentCat = btn.getAttribute("data-category");
-                updateGraphFilter();
-            });
+        document.addEventListener("DOMContentLoaded", initGraph);
+        window.addEventListener("resize", () => {
+            if (simulation) simulation.alpha(0.2).restart();
         });
     </script>
 </body>
