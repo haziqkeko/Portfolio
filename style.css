@@ -91,7 +91,7 @@ html, body {
 }
 
 /* =========================================================================
-   3. DOCUMENT SCROLL WRAPPER
+   3. DOCUMENT SCROLL WRAPPER & CANVAS
    ========================================================================= */
 .scroll-wrapper {
     width: 100%;
@@ -110,7 +110,10 @@ html, body {
     pointer-events: none;      
 }
 
-.hero-container, .about-container, .projects-container {
+.hero-container, 
+.about-container, 
+.projects-container,
+.contact-container {
     width: 100%;
     min-height: 100vh;
     position: relative;
@@ -122,7 +125,9 @@ html, body {
     box-sizing: border-box;
 }
 
-.about-container, .projects-container {
+.about-container, 
+.projects-container,
+.contact-container {
     padding: 5rem 2.5rem 4rem 2.5rem;
 }
 
@@ -723,7 +728,179 @@ html, body {
 }
 
 /* =========================================================================
-   7. RESPONSIVE BREAKPOINTS
+   7. SECTION 4: CONTACT VIEWPORT
+   ========================================================================= */
+.contact-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 5rem 2.5rem 4rem 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-content-box {
+    max-width: 860px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-header-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed rgba(86, 104, 133, 0.3);
+    padding-bottom: 0.8rem;
+}
+
+.contact-header-block h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent-glow);
+    letter-spacing: 0.05em;
+}
+
+.contact-main-card {
+    background: rgba(13, 21, 39, 0.65);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(86, 104, 133, 0.25);
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+}
+
+.contact-intro h3 {
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.contact-intro p {
+    font-size: 0.82rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.contact-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.contact-info-card {
+    background: rgba(6, 9, 17, 0.6);
+    border: 1px solid rgba(86, 104, 133, 0.2);
+    border-radius: 6px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.info-label {
+    font-size: 0.64rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    font-weight: 700;
+}
+
+.info-value {
+    font-size: 0.82rem;
+    color: var(--text-primary);
+}
+
+.email-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.email-link {
+    color: var(--accent-glow);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    word-break: break-all;
+}
+
+.email-link:hover {
+    color: #ffffff;
+}
+
+.copy-btn {
+    background: rgba(129, 140, 248, 0.15);
+    border: 1px solid var(--accent-glow);
+    color: var(--accent-glow);
+    font-family: inherit;
+    font-size: 0.68rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.copy-btn:hover {
+    background: var(--accent-glow);
+    color: var(--bg-main);
+}
+
+.contact-socials-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.social-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.social-card {
+    background: rgba(6, 9, 17, 0.6);
+    border: 1px solid rgba(86, 104, 133, 0.2);
+    border-radius: 6px;
+    padding: 0.85rem 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.25s ease;
+}
+
+.social-card-left {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+}
+
+.social-arrow {
+    color: var(--text-secondary);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.social-card:hover {
+    border-color: var(--accent-glow);
+    background: rgba(129, 140, 248, 0.08);
+    transform: translateY(-2px);
+}
+
+.social-card:hover .social-arrow {
+    transform: translateX(4px);
+    color: var(--accent-glow);
+}
+
+/* =========================================================================
+   8. RESPONSIVE BREAKPOINTS
    ========================================================================= */
 @media (max-width: 868px) {
     .top-nav {
@@ -766,7 +943,9 @@ html, body {
         display: none;
     }
 
-    .about-container, .projects-container {
+    .about-container, 
+    .projects-container, 
+    .contact-container {
         padding: 4rem 1rem 3rem 1rem;
     }
 
@@ -803,5 +982,15 @@ html, body {
 
     #graph-wrapper {
         height: 260px;
+    }
+
+    .contact-main-card {
+        padding: 1.25rem;
+    }
+
+    .email-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
     }
 }
